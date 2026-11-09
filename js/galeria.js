@@ -1,50 +1,30 @@
-// ===== CARROSSEL AUTOMÁTICO DA GALERIA =====
+// ===== GALERIA: "VER MAIS RESULTADOS" =====
 document.addEventListener("DOMContentLoaded", () => {
 
-    const track = document.querySelector(".gallery-track");
-    const slider = document.querySelector(".gallery-slider");
+    const botao = document.getElementById("galeriaMais");
+    const extras = document.querySelectorAll(".gallery-item.is-extra");
+    const secao = document.getElementById("galeria");
 
-    if (!track || !slider) return;
+    if (!botao || !extras.length) return;
 
-    let index = 0;
+    let aberto = false;
 
-    function getVisibleCount() {
-        const largura = window.innerWidth;
-        if (largura <= 576) return 1;
-        if (largura <= 900) return 2;
-        return 3;
-    }
+    botao.addEventListener("click", () => {
 
-    function totalItens() {
-        return track.children.length;
-    }
+        aberto = !aberto;
 
-    function moverSlide() {
-        const visiveis = getVisibleCount();
-        const totalPaginas = Math.ceil(totalItens() / visiveis);
+        extras.forEach((item) => {
+            item.hidden = !aberto;
+        });
 
-        index++;
-        if (index >= totalPaginas) index = 0;
+        botao.textContent = aberto ? "Ver menos" : "Ver mais resultados";
+        botao.setAttribute("aria-expanded", String(aberto));
 
-        const larguraItem = track.children[0].getBoundingClientRect().width;
-        const gap = 25;
-        const deslocamento = index * visiveis * (larguraItem + gap);
+        // ao recolher, volta ao início da galeria para não ficar perdido na página
+        if (!aberto && secao) {
+            secao.scrollIntoView({ behavior: "smooth" });
+        }
 
-        track.style.transform = `translateX(-${deslocamento}px)`;
-    }
-
-    let autoplay = setInterval(moverSlide, 4000); // troca a cada 4 segundos
-
-    // pausa quando o mouse passa por cima da galeria
-    slider.addEventListener("mouseenter", () => clearInterval(autoplay));
-    slider.addEventListener("mouseleave", () => {
-        autoplay = setInterval(moverSlide, 4000);
-    });
-
-    // recalcula posição ao redimensionar a tela
-    window.addEventListener("resize", () => {
-        index = 0;
-        track.style.transform = `translateX(0)`;
     });
 
 });

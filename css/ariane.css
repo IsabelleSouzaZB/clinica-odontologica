@@ -122,7 +122,7 @@ body{
 }
 
 section{
-    padding:120px 0;
+    padding:76px 0;
 }
 
 ::-webkit-scrollbar{
@@ -443,7 +443,7 @@ header.glass{
 ========================================= */
 
 .services {
-    padding: 100px 0;
+    padding:68px 0;
     background: #fff;
 }
 
@@ -591,7 +591,7 @@ header.glass{
 
 .process{
     background: var(--light);
-    padding: 120px 0;
+    padding:76px 0;
 }
 
 .process .section-subtitle{
@@ -608,7 +608,7 @@ header.glass{
 .process .section-description{
     text-align: center;
     max-width: 700px;
-    margin:0 auto 70px;
+    margin:0 auto 40px;
 }
 
 .timeline{
@@ -694,7 +694,7 @@ header.glass{
 
 .gallery{
     background: #ffffff;
-    padding: 120px 0;
+    padding:76px 0;
 }
 
 .gallery .section-subtitle{
@@ -711,7 +711,7 @@ header.glass{
 .gallery .section-description{
     text-align:center;
     max-width:700px;
-    margin:0 auto 70px;
+    margin:0 auto 40px;
 }
 
 .gallery-slider {
@@ -863,7 +863,7 @@ header.glass{
 
 .testimonials{
     background:var(--light);
-    padding:120px 0;
+    padding:76px 0;
 }
 
 .testimonials .section-subtitle{
@@ -879,7 +879,7 @@ header.glass{
 
 .testimonials .section-description{
     max-width:700px;
-    margin:0 auto 70px;
+    margin:0 auto 40px;
     text-align:center;
 }
 
@@ -938,7 +938,7 @@ header.glass{
 
 .faq{
     background:#ffffff;
-    padding:120px 0;
+    padding:76px 0;
 }
 
 .faq-container{
@@ -1003,7 +1003,7 @@ header.glass{
 ========================================= */
 
 .about {
-    padding: 100px 0 40px;
+    padding:68px 0 30px;
 }
 
 .about-container {
@@ -1168,7 +1168,7 @@ header.glass{
 }
 
 .highlights {
-    padding: 80px 0;
+    padding:56px 0;
     background: #fff;
 }
 
@@ -1299,7 +1299,7 @@ header.glass{
 
 .stats{
     background:var(--primary);
-    padding:80px 0;
+    padding:56px 0;
 }
 
 .stats-grid{
@@ -1371,7 +1371,7 @@ header.glass{
 ========================================= */
 
 .socials{
-    padding: 80px 0;
+    padding:56px 0;
     text-align: center;
     background: #fdf8f8;
 }
@@ -1419,7 +1419,7 @@ header.glass{
 
 .contact{
     background: var(--light);
-    padding: 100px 0;
+    padding:68px 0;
 }
 
 .contact-container{
@@ -2025,7 +2025,7 @@ textarea:focus-visible{
 
     /* GENERIC SECTIONS */
     section{
-        padding:70px 0;
+        padding:48px 0;
     }
     .section-title{
         font-size:38px;
@@ -2074,7 +2074,7 @@ textarea:focus-visible{
 
     /* SERVICES */
     .services{
-        padding:70px 0;
+        padding:48px 0;
     }
     .services-grid{
         grid-template-columns:1fr;
@@ -2197,7 +2197,7 @@ textarea:focus-visible{
 
     /* CONTACT */
     .contact{
-        padding:70px 0;
+        padding:48px 0;
     }
     .contact-container{
         grid-template-columns:1fr;
@@ -2370,4 +2370,135 @@ textarea:focus-visible{
     #backToTop{ width:40px; height:40px; right:15px; bottom:75px; }
     .back-top i,
     #backToTop i{ font-size:17px; }
+}
+
+/* =========================================================================
+   AJUSTES — galeria com "ver mais", contato com formulário em modal
+========================================================================= */
+
+/* ---------- GALERIA ---------- */
+.gallery-grid{
+    display:flex;
+    flex-wrap:wrap;
+    justify-content:center;
+    gap:25px;
+}
+.gallery-grid .gallery-item{
+    flex:0 0 calc((100% - 50px) / 3);
+    aspect-ratio:4 / 7;
+    border-radius:18px;
+}
+.gallery-item[hidden]{ display:none; }
+.gallery-more{ text-align:center; margin-top:44px; }
+.gallery-more button{
+    font-family:inherit;
+    font-size:16px;
+    cursor:pointer;
+    background:transparent;
+}
+@media (max-width:900px){
+    .gallery-grid{ gap:16px; }
+    .gallery-grid .gallery-item{ flex-basis:calc((100% - 16px) / 2); }
+}
+@media (max-width:576px){
+    .gallery-grid{ gap:10px; }
+    .gallery-grid .gallery-item{ flex-basis:calc((100% - 10px) / 2); border-radius:12px; }
+}
+
+/* ---------- CONTATO ---------- */
+.contact .section-subtitle{ display:block; text-align:center; }
+.contact .section-title{ text-align:center; }
+.contact .section-description{ text-align:center; margin:0 auto; }
+.contact-actions{
+    display:flex;
+    justify-content:center;
+    flex-wrap:wrap;
+    gap:16px;
+    margin:36px 0 44px;
+}
+.contact-actions button{
+    font-family:inherit;
+    font-size:16px;
+    cursor:pointer;
+    background:transparent;
+}
+.contact .contact-info{
+    display:grid;
+    grid-template-columns:repeat(4, 1fr);
+    gap:18px;
+    width:100%;
+}
+.contact .info-card{
+    flex-direction:column;
+    text-align:center;
+    gap:12px;
+    padding:24px 18px;
+}
+.contact .info-card:hover{ transform:translateY(-4px); }
+@media (max-width:992px){
+    .contact .contact-info{ grid-template-columns:repeat(2, 1fr); }
+}
+@media (max-width:576px){
+    .contact .contact-info{ grid-template-columns:1fr; }
+}
+
+/* ---------- MODAL ---------- */
+.modal{
+    position:fixed;
+    inset:0;
+    z-index:10000;
+    display:flex;
+    align-items:center;
+    justify-content:center;
+    padding:20px;
+}
+.modal[hidden]{ display:none; }
+.modal-backdrop{
+    position:absolute;
+    inset:0;
+    background:rgba(34,34,34,.6);
+    backdrop-filter:blur(3px);
+    animation:modalFade .3s ease;
+}
+.modal-panel{
+    position:relative;
+    width:100%;
+    max-width:520px;
+    max-height:92vh;
+    overflow-y:auto;
+    animation:modalUp .35s ease;
+}
+.modal-close{
+    position:absolute;
+    top:14px;
+    right:16px;
+    width:40px;
+    height:40px;
+    display:flex;
+    align-items:center;
+    justify-content:center;
+    font-size:26px;
+    color:var(--gray);
+    border-radius:50%;
+    transition:var(--transition);
+}
+.modal-close:hover{ background:var(--light); color:var(--dark); }
+.modal-title{
+    font-family:'Cormorant Garamond',serif;
+    font-size:34px;
+    line-height:1.1;
+    margin-bottom:6px;
+    padding-right:36px;
+}
+.modal-sub{
+    color:var(--gray);
+    font-size:14px;
+    margin-bottom:22px;
+}
+body.modal-open{ overflow:hidden; }
+@keyframes modalFade{ from{ opacity:0; } to{ opacity:1; } }
+@keyframes modalUp{ from{ opacity:0; transform:translateY(18px); } to{ opacity:1; transform:none; } }
+@media (max-width:576px){
+    .modal-panel{ padding:28px 20px 22px; }
+    .modal-title{ font-size:28px; }
 }

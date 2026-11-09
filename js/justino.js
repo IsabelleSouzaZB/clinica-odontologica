@@ -1,13 +1,6 @@
-/* =========================================
-        DRA. ARIANE JUSTINO
-        JAVASCRIPT
-========================================= */
-
 document.addEventListener("DOMContentLoaded", () => {
 
-    /* =============================
-            ELEMENTOS
-    ============================= */
+ 
 
     const header = document.querySelector("header");
     const menuToggle = document.querySelector(".menu-toggle");
@@ -22,11 +15,6 @@ document.addEventListener("DOMContentLoaded", () => {
     const formulario = document.querySelector(".contact-form form");
 
 
-    /* =============================
-            NAVBAR AO ROLAR + MENU ATIVO
-            (unificado em um único listener
-            de scroll para melhor performance)
-    ============================= */
 
     function atualizarScroll() {
 
@@ -94,9 +82,6 @@ document.addEventListener("DOMContentLoaded", () => {
     atualizarScroll();
 
 
-    /* =============================
-            MENU HAMBÚRGUER
-    ============================= */
 
     if (menuToggle && nav) {
 
@@ -143,10 +128,6 @@ document.addEventListener("DOMContentLoaded", () => {
     }
 
 
-    /* =============================
-            BOTÃO VOLTAR AO TOPO
-    ============================= */
-
     if (backTop) {
 
         backTop.addEventListener("click", () => {
@@ -155,10 +136,6 @@ document.addEventListener("DOMContentLoaded", () => {
 
     }
 
-
-    /* =============================
-            ANIMAÇÃO FADE
-    ============================= */
 
     const elementosFade = document.querySelectorAll(".fade");
 
@@ -182,10 +159,6 @@ document.addEventListener("DOMContentLoaded", () => {
     }
 
 
-    /* =============================
-            FAQ INTERATIVO
-    ============================= */
-
     faqItems.forEach((item) => {
 
         const question = item.querySelector(".faq-question");
@@ -204,10 +177,6 @@ document.addEventListener("DOMContentLoaded", () => {
 
     });
 
-
-    /* =============================
-            LIGHTBOX GALERIA
-    ============================= */
 
     if (lightbox && galleryImages.length) {
 
@@ -244,9 +213,40 @@ document.addEventListener("DOMContentLoaded", () => {
     }
 
 
-    /* =============================
-        FORMULÁRIO → WHATSAPP
-    ============================= */
+    const modalForm = document.querySelector("#formModal");
+    const abrirFormBtn = document.querySelector("#abrirForm");
+    let focoAnterior = null;
+
+    function abrirModal() {
+        if (!modalForm) return;
+        focoAnterior = document.activeElement;
+        modalForm.hidden = false;
+        document.body.classList.add("modal-open");
+        const primeiroCampo = modalForm.querySelector("input");
+        if (primeiroCampo) setTimeout(() => primeiroCampo.focus(), 50);
+    }
+
+    function fecharModal() {
+        if (!modalForm || modalForm.hidden) return;
+        modalForm.hidden = true;
+        document.body.classList.remove("modal-open");
+        if (focoAnterior) focoAnterior.focus();
+    }
+
+    if (modalForm && abrirFormBtn) {
+
+        abrirFormBtn.addEventListener("click", abrirModal);
+
+        modalForm.querySelectorAll("[data-fechar-modal]").forEach((el) => {
+            el.addEventListener("click", fecharModal);
+        });
+
+        document.addEventListener("keydown", (event) => {
+            if (event.key === "Escape") fecharModal();
+        });
+
+    }
+
 
     if (formulario) {
 
@@ -282,6 +282,7 @@ document.addEventListener("DOMContentLoaded", () => {
             window.open(url, "_blank", "noopener");
 
             formulario.reset();
+            fecharModal();
 
         });
 
